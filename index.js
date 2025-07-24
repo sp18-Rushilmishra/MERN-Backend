@@ -1,35 +1,80 @@
-// const amount = 9;
 
-// if(amount < 10) {
-//     console.log('small nunmber')
-// }else{
-//     console.log('large number')
-// }
+ // This is the basic promise exapmle i have given
 
-// console.log('hey it is my first node app!! ')
+ const taskPromise = new Promise((isSuccess , isFailure) => {
+     const isDone = true;
+     if(isDone){
+         isSuccess("task is completed");
+     }else{
+         isFailure("task is failed");
+     }
+ });
 
-// const express = require('express');
-// const app = express();
+ taskPromise.then(result => console.log(result));
+ taskPromise.catch(error => console.error(error));
 
-// app.get('/', (req, res) => {
-//   res.send('Hello Express!');
-// });
+ //This is the example for resolve and reject
 
-// app.listen(3000, () => {
-//   console.log('Server running on port 3000');
-// });
+ const Success = Promise.resolve("data is loaded");
+ const failure = Promise.reject("data is not found");
 
-// console.log(__dirname);
+ Success.then(data => console.log(data));
+ failure.catch(err => console.error(err));
 
-// var fs = require('fs');
-// var os  = require('os');
+ // This is the example promise all 
 
-// var user = os.userInfo();
-// console.log(user);
-// console.log(user.username);
+ const A = Promise.resolve("file A");
+ const B = Promise.resolve("file B");
+ const C = Promise.resolve("file C");
 
-// fs.appendFile('greeting.txt' , 'hi' + user.username + '!' , () => (
-//     console.log('file')
-// ) )
+ Promise.all([A , B , C])
+ .then(files => {
+     console.log(files);
+ })
+ .catch(err => {
+     console.error("one download failed:" , err);
+ });
 
+ // This is for promise all settled()
 
+ const user = Promise.resolve("user data");
+ const posts = Promise.reject("posts is missing");
+
+ Promise.allSettled([user, posts])
+   .then(results => {
+     results.forEach(result => {
+       if (result.status === "fulfilled") {
+         console.log("Success:", result.value);
+      } else {
+        console.warn("Failed:", result.reason);
+      }
+     });
+   });
+
+ // This code is for promise.race 
+
+ const no1 = new Promise(resolve => setTimeout(() => resolve("work is done")
+ ,150));
+
+const no2 = new Promise(resolve => setTimeout(() => resolve("work is not done")
+,300));
+
+ Promise.race([no1 , no2]).then(fastest => {
+     console.log("the first finished the task" , fastest);
+ });
+
+ //This code is for promise.any
+
+const option1 = Promise.reject("Option 1 has failed");
+ const option2 = Promise.resolve("Option 2 is working");
+ const option3 = Promise.resolve("Option 3 is also working");
+
+Promise.any([option1, option2, option3])
+   .then(result => {
+     console.log("First success:", result);  
+  })
+   .catch(allFailed => {
+    console.error("No successful promises");
+  });
+
+  
