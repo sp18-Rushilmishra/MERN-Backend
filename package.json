@@ -1,33 +1,26 @@
-
 {
-  "name": "product-management-system",
+  "dependencies": {
+    "express": "^5.1.0",
+    "nodemon": "^3.1.10"
+  },
+  "name": "mern-backend",
   "version": "1.0.0",
-  "description": "RESTful API to manage products using Node.js, Express, and MongoDB.",
+  "description": "",
   "main": "index.js",
+  "devDependencies": {},
   "scripts": {
     "start": "node index.js",
-    "dev": "nodemon index.js",
+    "dev" : "nodemon index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/sp18-Rushilmishra/MERN-Backend.git"
   },
-  "keywords": ["express", "mongodb", "nodejs", "rest-api", "product"],
-  "author": "Rushil Mishra",
+  "author": "",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/sp18-Rushilmishra/MERN-Backend/issues"
   },
-  "homepage": "https://github.com/sp18-Rushilmishra/MERN-Backend#readme",
-  "dependencies": {
-    "dotenv": "^10.0.0",
-    "express": "^4.18.2",
-    "express-validator": "^7.0.1",
-    "mongoose": "^7.3.1"
-  },
-  "devDependencies": {
-    "nodemon": "^3.0.1"
-  }
+  "homepage": "https://github.com/sp18-Rushilmishra/MERN-Backend#readme"
 }
-
