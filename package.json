@@ -1,0 +1,26 @@
+{
+  "dependencies": {
+    "express": "^5.1.0",
+    "nodemon": "^3.1.10"
+  },
+  "name": "mern-backend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "read.js",
+  "devDependencies": {},
+  "scripts": {
+    "start": "node rest.js",
+    "dev" : "nodemon rest.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sp18-Rushilmishra/MERN-Backend.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sp18-Rushilmishra/MERN-Backend/issues"
+  },
+  "homepage": "https://github.com/sp18-Rushilmishra/MERN-Backend#readme"
+}
