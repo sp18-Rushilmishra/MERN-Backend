@@ -6,11 +6,11 @@
   "name": "mern-backend",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "read.js",
   "devDependencies": {},
   "scripts": {
-    "start": "node index.js",
-    "dev" : "nodemon index.js",
+    "start": "node rest.js",
+    "dev" : "nodemon rest.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {

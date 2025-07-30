@@ -12,14 +12,13 @@ const fs = require("fs");
 //  )
 // console.log(2)
 // const result = fs.readFileSync("./contacts.txt" , "utf-8");
-// console.log(result);
-
- fs.readFile("./contacts.txt" , "utf-8" , (err , result) =>{
-     if(err) {
-         console.log("error" , err);
-     }else{
-         console.log(result);
-     }
- })
+ 
+//  fs.readFile("./contacts.txt" , "utf-8" , (err , result) =>{
+//      if(err) {
+//          console.log("error" , err);
+//      }else{
+//          console.log(result);
+//      }
+//  })
 
 //fs.appendFileSync("./test.txt" , 'hey there/n')
