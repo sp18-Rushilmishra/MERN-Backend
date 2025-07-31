@@ -65,3 +65,19 @@ INSERT INTO enrollment (enrollment_id, student_id, course_id, enrollment_date) V
 (13, 8, 2, '2025-07-08'),
 (14, 9, 4, '2025-07-09'),
 (15, 10, 3, '2025-07-10');
+
+SELECT gender , COUNT(*) AS total_students
+ FROM students
+ GROUP BY gender;
+
+ SELECT gender , AVG(age) AS average_age
+ FROM students
+ GROUP BY gender;
+
+ SELECT gender , MAX(age) AS max_age , MIN(age) AS min_age
+ FROM students
+ GROUP BY gender;
+
+ SELECT gender , SUM(age) AS total_age
+ FROM students
+ GROUP BY gender;
