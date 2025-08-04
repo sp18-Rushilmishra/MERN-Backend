@@ -1,16 +1,19 @@
+-- Drop tables if they exist, in order to avoid foreign key issues
 DROP TABLE IF EXISTS enrollment;
 DROP TABLE IF EXISTS courses;
 DROP TABLE IF EXISTS students;
 
+-- Students table, phone is set to UNIQUE from the start
 CREATE TABLE students (
     student_id SERIAL PRIMARY KEY,
     name VARCHAR(100) NOT NULL,
     age INT, 
     gender VARCHAR(10),
     email VARCHAR(100) UNIQUE NOT NULL,
-    phone VARCHAR(15) UNIQUE -- Added unique here from start
+    phone VARCHAR(15) UNIQUE
 );
 
+-- Courses table
 CREATE TABLE courses (
     course_id SERIAL PRIMARY KEY,
     course_name VARCHAR(100) NOT NULL,
@@ -18,6 +21,7 @@ CREATE TABLE courses (
     fee DECIMAL(10, 2)
 );
 
+-- Enrollment table with proper foreign keys and CASCADE delete
 CREATE TABLE enrollment (
     enrollment_id SERIAL PRIMARY KEY,
     student_id INT NOT NULL,
@@ -27,7 +31,7 @@ CREATE TABLE enrollment (
     FOREIGN KEY (course_id) REFERENCES courses(course_id) ON DELETE CASCADE
 );
 
--- Inserting data, removing explicit serial IDs for auto increment
+-- Populate students (let SERIAL handle student_id)
 INSERT INTO students(name, age, gender, email, phone) VALUES
 ('Aman Sharma', 20, 'Male', 'aman.sharma@example.com', '9876543210'),
 ('Bhavna Patel', 22, 'Female', 'bhavna.patel@example.com', '9876543211'),
@@ -40,6 +44,7 @@ INSERT INTO students(name, age, gender, email, phone) VALUES
 ('Isha Roy', 23, 'Female', 'isha.roy@example.com', '9876543218'),
 ('Jatin Das', 20, 'Male', 'jatin.das@example.com', '9876543219');
 
+-- Populate courses
 INSERT INTO courses(course_name, duration, fee) VALUES
 ('Mathematics', INTERVAL '3 months', 1500.00),
 ('Physics', INTERVAL '4 months', 2000.00),
@@ -47,6 +52,7 @@ INSERT INTO courses(course_name, duration, fee) VALUES
 ('Biology', INTERVAL '4 months', 1900.00),
 ('English Literature', INTERVAL '2 months', 1200.00);
 
+-- Populate enrollment
 INSERT INTO enrollment(student_id, course_id, enrollment_date) VALUES
 (1, 1, '2025-07-01'),
 (1, 2, '2025-07-01'),
@@ -105,21 +111,18 @@ LIMIT 1;
 
 -- 7. Update fee for Mathematics course
 UPDATE courses
-SET fee = 5500 -- corrected column name and new fee
+SET fee = 5500
 WHERE course_name = 'Mathematics';
 
 -- 8. Remove all enrollments for a dropped-out student (example student_id = 5)
 DELETE FROM enrollment WHERE student_id = 5;
 
--- 9. Update duration for a course (example course_name = 'Computer Science')
--- Note: Since Computer Science course does NOT exist, just showing how:
+-- 9. Update duration for a course (Computer Science does not exist; statement executes but has no effect)
 UPDATE courses
 SET duration = INTERVAL '18 weeks'
 WHERE course_name = 'Computer Science';
 
--- 10. Unique constraint on phone column already added in CREATE TABLE.
-ALTER TABLE Student
-ADD UNIQUE ('phone')
+-- 10. Unique constraint on phone column is ALREADY SET in CREATE TABLE. No ALTER TABLE needed.
 
 -- 11. Add an index on enrollment_date column
 CREATE INDEX idx_enrollmentdate ON enrollment(enrollment_date);
