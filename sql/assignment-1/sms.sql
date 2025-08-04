@@ -118,6 +118,8 @@ SET duration = INTERVAL '18 weeks'
 WHERE course_name = 'Computer Science';
 
 -- 10. Unique constraint on phone column already added in CREATE TABLE.
+ALTER TABLE Student
+ADD UNIQUE ('phone')
 
 -- 11. Add an index on enrollment_date column
 CREATE INDEX idx_enrollmentdate ON enrollment(enrollment_date);
